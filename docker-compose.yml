@@ -1,0 +1,22 @@
+services:
+    bd:
+        image: postgres:15
+        container_name: db_prac1
+        environment:
+            - POSTGRES_DB=baseDatos
+            - POSTGRES_USER=db
+            - POSTGRES_PASSWORD=db
+        ports:
+            - "5434:5432"
+        volumes:
+            - ./volumenPersistencia:/var/lib/postgresql/data
+            - ./init:/docker-entrypoint-initdb.d
+        networks:
+            - networkMy
+
+networks:
+    networkMy:
+        driver: bridge
+
+volumes:
+    volumenPersistencia: {}
